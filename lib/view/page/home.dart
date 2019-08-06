@@ -138,8 +138,8 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   RatingButton(
-                    ratingCount: 4,
-                    starColor: Colors.blue,
+                    ratingCount: 8,
+                    starColor: Colors.green,
                   ),
                   RaisedButton(
                     color: Colors.green,
