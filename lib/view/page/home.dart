@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tutorial1/view/partial/ratingbutton.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -43,6 +44,27 @@ class _HomePageState extends State<HomePage> {
             height: 50.0,
             width: 100.0,
             color: index % 2 == 0 ? Colors.green : Colors.red,
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                  top: 2,
+                  left: 2,
+                  child: Icon(Icons.star, size: 20.0),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text("Hello"),
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                    size: 40.0,
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),
@@ -73,17 +95,80 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  getCommonWidget() {
+    return Container(
+      color: Colors.blue,
+      // padding: EdgeInsets.all(),
+      padding: EdgeInsets.only(
+        top: 10.0,
+        left: 10.0,
+      ),
+      height: 300.0,
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: <Widget>[
+          Text("Hello"),
+          Image.network(
+            "https://kyotoreview.org/wp-content/uploads/Indonesia-map-678x381.jpg",
+            width: 100.0,
+            height: 100.0,
+          ),
+          Card(
+            child: ListTile(
+              leading: FlutterLogo(),
+              title: Text("SM MILD 12"),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text("ROKOK"),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                    ],
+                  ),
+                  RatingButton(
+                    ratingCount: 4,
+                    starColor: Colors.blue,
+                  ),
+                  RaisedButton(
+                    color: Colors.green,
+                    child: Text("Buy"),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: <Widget>[
-          getKotak(Colors.red),
-          getKotakWithIcon(),
-          getListDataWithContainer(),
-          getStackContainer(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            getKotak(Colors.red),
+            getKotakWithIcon(),
+            getListDataWithContainer(),
+            getStackContainer(),
+            getCommonWidget(),
+          ],
+        ),
       ),
     );
   }
